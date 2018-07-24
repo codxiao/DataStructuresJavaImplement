@@ -1,11 +1,11 @@
 package com.company;
 
-public class Array {
-    private int[] data;
+public class Array<E> {
+    private E[] data;
     private int size;
     //构造器初始化数组
     public Array(int capacity){
-        data=new int[capacity];
+       data=(E[]) new Object[capacity];
         size=0;
     }
     //用户不传参则构造默认数组
@@ -26,7 +26,7 @@ public class Array {
         return size==0;
     }
     //在数组末尾添加元素
-    public void addAtLast(int e){
+    public void addAtLast(E e){
              addAtMiddle(size,e);                                                                                       /*
                                                                                                     if(size==data.length){
              原始逻辑在右侧                                                                                           throw new IllegalArgumentException("数组已满，无法插入");
@@ -35,11 +35,11 @@ public class Array {
                                                                                                     size++;
                                                                                                     */
     }
-    public void addAtFirst(int e){
+    public void addAtFirst(E e){
         addAtMiddle(0,e);
     }
     //在数组的数据中间插入一个元素
-    public void addAtMiddle(int index,int e){
+    public void addAtMiddle(int index,E e){
         if(size==data.length){
             throw new IllegalArgumentException("数组满，无法插入");
         }
@@ -63,34 +63,34 @@ public class Array {
 
         }
         //是否包含一个元素
-        public boolean contains(int e){
+        public boolean contains(E e){
             for (int i=0;i<size;i++){
-                if(data[i]==e)
+                if(data[i].equals(e))
                     return true;
             }
             return false;
         }
         //查找一个元素
-    public int findElement(int e){
+    public int findElement(E e){
         for (int i=0;i<size;i++){
-            if(data[i]==e)
+            if(data[i].equals(e))
                 return i;
         }
         return -1;
     }
     //删除一个元素
-    public int deleteByIndex(int index) {
+    public E deleteByIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("索引不合法");
         }
-        int result=data[index];
+        E result=data[index];
         for (int i=index+1;i<=size-1;i++){
             data[i-1]=data[i];
         }
         size--;
         return result;
     }
-    public void deleteByElement(int e){
+    public void deleteByElement(E e){
        int local=findElement(e);
        if (local==-1){
            throw new IllegalArgumentException("删除的元素不存在！");
