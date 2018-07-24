@@ -40,11 +40,12 @@ public class Array<E> {
     }
     //在数组的数据中间插入一个元素
     public void addAtMiddle(int index,E e){
-        if(size==data.length){
-            throw new IllegalArgumentException("数组满，无法插入");
-        }
+
         if (index<0||index>size)
             throw new IllegalArgumentException("index参数错误，无法插入");
+        if(size==data.length){
+           resize(data.length*2);
+        }
         //方法1
         int l=size;
         while (index<l){
@@ -62,7 +63,16 @@ public class Array<E> {
 
 
         }
-        //是否包含一个元素
+
+    private void resize(int i) {
+        E[] newData=(E[]) new Object[i];
+        for (int j=0;j<size;j++){
+            newData[j]=data[j];
+        }
+        data=newData;
+    }
+
+    //是否包含一个元素
         public boolean contains(E e){
             for (int i=0;i<size;i++){
                 if(data[i].equals(e))
@@ -108,6 +118,6 @@ public class Array<E> {
             if (i!=size-1)
             result.append(',');
         }
-        return "数组大小："+size+"     元素为"+result;
+        return "数组大小："+size+"容量为："+data.length+"     元素为"+result;
     }
 }

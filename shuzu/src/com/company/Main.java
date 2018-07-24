@@ -20,10 +20,12 @@ public class Main {
 	System.out.println(myArray.toString());
 	*/
 
-	Array<Student> studentArray=new Array<>(10);
+	Array<Student> studentArray=new Array<>(3);
 	studentArray.addAtFirst(new Student(1,98));
 	studentArray.addAtFirst(new Student(2,99));
 	studentArray.addAtFirst(new Student(3,100));
+		System.out.println(studentArray.toString());
+		studentArray.addAtFirst(new Student(4,00));
 		//System.out.println(studentArray.getSize());
 		System.out.println(studentArray.toString());
 
